@@ -11,7 +11,6 @@ import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
-import java.util.Optional;
 
 @RunWith(Parameterized.class)
 public abstract class BaseTests {
@@ -36,7 +35,7 @@ public abstract class BaseTests {
         return data;
     }
 
-    public Sql sql;
+    public SqlStream sql;
 
     @Parameterized.Parameter
     public Database database;
@@ -49,7 +48,7 @@ public abstract class BaseTests {
                 System.getenv("PGURL"),
                 System.getenv("PGUSER"),
                 System.getenv("PGPASSWORD")));
-            sql = Sql.connect(connection);
+            sql = SqlStream.connect(connection);
 
             sql.exec("create table test (" +
                 "a serial primary key not null," +
@@ -70,7 +69,7 @@ public abstract class BaseTests {
         }
         case H2:
             Connection connection = Wrap.get(() -> DriverManager.getConnection("jdbc:h2:mem:test"));
-            sql = Sql.connect(connection);
+            sql = SqlStream.connect(connection);
 
             sql.exec("create table test (" +
                 "a serial primary key not null," +
@@ -89,7 +88,7 @@ public abstract class BaseTests {
             ")");
             break;
         case SQLITE:
-            sql = Wrap.get(() -> Sql.connect(DriverManager.getConnection("jdbc:sqlite:")));
+            sql = Wrap.get(() -> SqlStream.connect(DriverManager.getConnection("jdbc:sqlite:")));
             sql.exec("create table test (" +
                 "a integer primary key autoincrement not null," +
                 "b integer" +

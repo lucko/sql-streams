@@ -18,31 +18,31 @@ import javax.sql.DataSource;
  * methods to set it up from a {@link Connection} or a {@link DataSource}
  * as well as all methods to query it.
  */
-public interface Sql extends Closeable {
+public interface SqlStream extends Closeable {
 
     /**
-     * Constructs a {@link Sql} instance holding a single connection.
+     * Constructs a {@link SqlStream} instance holding a single connection.
      *
      * @param connection the connection to use
      * @return the newly created {@code Sql} instance
      * @see #connect(DataSource)
      */
-    static Sql connect(Connection connection) {
+    static SqlStream connect(Connection connection) {
         return connect(new SingleConnectionDataSource(connection));
     }
 
     /**
-     * Constructs a {@link Sql} instance retrieving new {@link Connection}s
+     * Constructs a {@link SqlStream} instance retrieving new {@link Connection}s
      * from the provided {@link DataSource} as needed.
      *
      * @param dataSource the datasource supplying connections
      * @return the newly created {@code Sql} instance
      */
-    static Sql connect(DataSource dataSource) {
+    static SqlStream connect(DataSource dataSource) {
         return new SqlImpl(dataSource);
     }
 
-    <T> Sql registerCustomBinding(Class<T> clazz, PreparedStatementBinderByIndex<T> preparedStatementBinderByIndex);
+    <T> SqlStream registerCustomBinding(Class<T> clazz, PreparedStatementBinderByIndex<T> preparedStatementBinderByIndex);
 
     /**
      * Opens a new transaction bound to a single connection.

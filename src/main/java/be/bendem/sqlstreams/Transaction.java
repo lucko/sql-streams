@@ -11,7 +11,7 @@ import java.sql.Connection;
  * } // Automatic rollback
  * }</pre>
  */
-public interface Transaction extends Sql {
+public interface Transaction extends SqlStream {
 
     enum IsolationLevel {
         NONE(Connection.TRANSACTION_NONE),

@@ -5,7 +5,7 @@
  * easily handle set parameters of prepared statements and map database result sets to
  * classes.
  * <p>
- * The heart of this library is the {@link be.bendem.sqlstreams.Sql} class which provides
+ * The heart of this library is the {@link be.bendem.sqlstreams.SqlStream} class which provides
  * static factories as well as the methods used to execute DML and DDL sql queries. These
  * methods generally come in two flavors: prepared and non prepared.
  * <p>
@@ -26,7 +26,7 @@
  * }}</pre>
  *
  * <h2>Transactions</h2>
- * Transactions are handled using {@link be.bendem.sqlstreams.Sql#transaction()}. Unlike
+ * Transactions are handled using {@link be.bendem.sqlstreams.SqlStream#transaction()}. Unlike
  * the JDBC API, closing a transaction (and thus the underlying connection) is guaranteed
  * to rollback your current transaction. As such, transactional code is best written
  * using the {@code try}-with-resources construct as such:

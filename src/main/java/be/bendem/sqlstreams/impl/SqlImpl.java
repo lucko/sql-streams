@@ -10,7 +10,7 @@ import java.util.Objects;
 
 import javax.sql.DataSource;
 
-public class SqlImpl implements Sql {
+public class SqlImpl implements SqlStream {
 
     private final DataSource dataSource;
     final SqlBindings bindings;

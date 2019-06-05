@@ -1,5 +1,7 @@
 package be.bendem.sqlstreams.util;
 
+import be.bendem.sqlstreams.SqlStream;
+
 import javax.sql.DataSource;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -11,7 +13,7 @@ import java.util.logging.Logger;
  * A stupid {@link DataSource} implementation that throws {@link UnsupportedOperationException} for every method except
  * {@link #getConnection()} and {@link #getConnection(String, String)}.
  *
- * This {@code DataSource} is used by {@link be.bendem.sqlstreams.Sql#connect(Connection)}.
+ * This {@code DataSource} is used by {@link SqlStream#connect(Connection)}.
  */
 abstract class DummyDataSource implements DataSource {
 
